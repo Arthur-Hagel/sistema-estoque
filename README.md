@@ -8,7 +8,7 @@ Sistema de terminal desenvolvido em Python para gerenciar o estoque de produtos,
 - ✅ Listar todos os produtos cadastrados
 - ✅ Atualizar quantidade de um produto
 - ✅ Remover produto
-- 🔜 Persistência de dados em arquivo CSV (em desenvolvimento)
+- ✅  Persistência de dados em arquivo CSV 
 
 ## 🛠️ Tecnologias
 
