@@ -39,6 +39,6 @@ Este projeto faz parte da minha jornada de aprendizado em Python, aplicando conc
 
 ## 📋 Próximos passos
 
-- [ ] Implementar `salvar_estoque()` e `carregar_estoque()` para persistência em CSV
+- [x] Implementar `salvar_estoque()` e `carregar_estoque()` para persistência em CSV
 - [ ] Refatorar funcionalidades em funções separadas
 - [ ] Adicionar validação de entrada mais robusta
