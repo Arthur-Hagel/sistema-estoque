@@ -2,6 +2,31 @@ estoque = {}
 # Cria um dicionário vazio que vai guardar todos os produtos.
 # Cada produto será uma "chave" (nome) apontando para outro dicionário (quantidade e preço).
 
+import csv
+
+def salvar_estoque():
+    with open("estoque.csv", "w", newline="", encoding="utf-8") as arquivo:
+        escritor = csv.writer(arquivo)
+        escritor.writerow(["nome", "quantidade", "preco"])
+
+        for nome, dados in estoque.items():
+            escritor.writerow([nome, dados["quantidade"], dados["preco"]])
+def carregar_estoque():
+    try:
+        with open("estoque.csv", "r", encoding="utf-8") as arquivo:
+            leitor = csv.DictReader(arquivo)
+
+            for linha in leitor:
+                nome = linha["nome"]
+                quantidade = int(linha["quantidade"])
+                preco = float(linha["preco"])
+
+                estoque[nome] = {"quantidade": quantidade, "preco": preco}
+    except FileNotFoundError:
+        pass
+
+carregar_estoque()
+
 while True:
     # Loop infinito: o menu vai se repetir pra sempre, até algo com "break" interromper.
     
@@ -45,6 +70,7 @@ while True:
             # a chave é o "nome", e o valor é outro dicionário com quantidade e preço.
             print(f"Produto '{nome}' adicionado com sucesso!")
             # Confirma a ação pro usuário.
+            salvar_estoque()
 
     elif opcao == "2":
         if not estoque:
@@ -67,6 +93,7 @@ while True:
             # Acessa o produto pelo nome, entra no dicionário interno, e troca só o valor de "quantidade".
             # O "preco" desse produto continua intacto, sem ser mexido.
             print(f"Quantidade de '{nome}' atualizada para {nova_quantidade}.")
+            salvar_estoque()
         else:
             print(f"Produto '{nome}' não encontrado.")
 
@@ -77,5 +104,6 @@ while True:
             del estoque[nome]
             # "del" remove essa chave (e o valor junto) do dicionário completamente.
             print(f"Produto '{nome}' removido com sucesso.")
+            salvar_estoque()
         else:
             print(f"Produto '{nome}' não encontrado.")
